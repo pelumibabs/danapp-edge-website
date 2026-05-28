@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme variables ──────────────────────────────────────── */
+:root {
+  /* Play button breathe glow — neutral in dark, orange in light */
+  --breathe-glow: rgba(255,255,255,0.10);
+  --breathe-glow-out: rgba(255,255,255,0);
+
+  /* Why Choose Us heading gradient */
+  --why-gradient: linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%);
+
+  /* Process heading gradients (dark default) */
+  --process-our-bg: linear-gradient(180deg, #888888 0%, #555555 100%);
+  --process-word-bg: linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%);
+
+  /* Dark theme (default) */
+  --bg: #09090E;
+  --bg-card: #111119;
+  --bg-elevated: #18181F;
+  --bg-section: #0B0B14;
+  --fg: #FFFFFF;
+  --fg-secondary: #94A3B8;
+  --fg-muted: #64748B;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+
+  /* Interactive elements */
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-border-focus: rgba(124, 58, 237, 0.6);
+
+  /* Nav/overlay */
+  --nav-bg: rgba(9, 9, 14, 0.92);
+  --overlay-bg: rgba(9, 9, 14, 0.95);
+
+  /* Grid decoration */
+  --grid-line: rgba(255, 255, 255, 0.04);
+
+  /* Button (inverted fg/bg) */
+  --btn-bg: #FFFFFF;
+  --btn-fg: #09090E;
+}
+
+[data-theme="light"] {
+  --breathe-glow: rgba(253,94,60,0.22);
+  --breathe-glow-out: rgba(253,94,60,0);
+
+  --why-gradient: linear-gradient(90deg, #FD5E3C 0%, #8032E5 100%);
+
+  /* Process heading gradients (light) */
+  --process-our-bg: #0D0D0D;
+  --process-word-bg: linear-gradient(90deg, #FD5E3C 0%, #8032E5 100%);
+
+  --bg: #FFFFFF;
+  --bg-card: #F8FAFC;
+  --bg-elevated: #F1F5F9;
+  --bg-section: #F4F6FB;
+  --fg: #0F172A;
+  --fg-secondary: #475569;
+  --fg-muted: #94A3B8;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.18);
+
+  --hover-bg: rgba(0, 0, 0, 0.04);
+  --input-bg: rgba(0, 0, 0, 0.04);
+  --input-border: rgba(0, 0, 0, 0.12);
+  --input-border-focus: rgba(124, 58, 237, 0.5);
+
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --overlay-bg: rgba(255, 255, 255, 0.97);
+
+  --grid-line: rgba(0, 0, 0, 0.04);
+
+  --btn-bg: #0F172A;
+  --btn-fg: #FFFFFF;
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* ─── Component classes ─────────────────────────────────────── */
+@layer components {
+  .container-base {
+    @apply w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[140px];
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] font-bold leading-tight;
+    color: var(--fg);
+  }
+
+  .section-sub {
+    @apply text-base sm:text-lg leading-relaxed;
+    color: var(--fg-secondary);
+  }
+
+  /* Card with glass-like appearance */
+  .card-glass {
+    border-radius: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Primary button: fg/bg inverted — auto adapts to theme */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap;
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 whitespace-nowrap;
+    color: var(--fg);
+    border: 1px solid var(--border-hover);
+    background-color: transparent;
+  }
+  .btn-outline:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--border-hover);
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────── */
+@layer utilities {
+  .text-gradient-why {
+    background: var(--why-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    padding-bottom: 0.18em;
+  }
+
+  /* Process heading — CSS-variable driven, no React inline-style diff */
+  .text-gradient-process-our {
+    display: inline-block;
+    background: var(--process-our-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.18em;
+  }
+  .text-gradient-process-word {
+    display: inline-block;
+    background: var(--process-word-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.18em; /* extends box so descenders (p, g, y) aren't clipped */
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #7C3AED, #A78BFA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 77px 77px;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Reverse direction — items appear left, move right */
+  .marquee-track-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-reverse 30s linear infinite;
+  }
+
+  .marquee-track-reverse:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* ─── Keyframes (raw, used via inline style) ─────────────────── */
+@keyframes float-dot {
+  0%   { transform: translate(0px, 0px); }
+  25%  { transform: translate(5px, -7px); }
+  50%  { transform: translate(2px, -13px); }
+  75%  { transform: translate(-4px, -6px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0px var(--breathe-glow); }
+  50%       { transform: scale(1.12); box-shadow: 0 0 0 16px var(--breathe-glow-out); }
+}
+
+@keyframes breathe-scale {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.10); }
+}
+
+@keyframes glow-drift-orange {
+  0%   { transform: translate(-70%, -50%) scale(1); }
+  33%  { transform: translate(-65%, -58%) scale(1.08); }
+  66%  { transform: translate(-76%, -44%) scale(0.94); }
+  100% { transform: translate(-70%, -50%) scale(1); }
+}
+
+@keyframes glow-drift-purple {
+  0%   { transform: translate(-30%, -50%) scale(1); }
+  33%  { transform: translate(-24%, -44%) scale(0.94); }
+  66%  { transform: translate(-36%, -57%) scale(1.08); }
+  100% { transform: translate(-30%, -50%) scale(1); }
+}
+
+@keyframes word-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%       { opacity: 0.12; transform: scale(0.5); }
+}
