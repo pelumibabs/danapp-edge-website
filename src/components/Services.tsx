@@ -380,7 +380,7 @@ export default function Services() {
             className="text-base leading-relaxed max-w-md lg:pt-3"
             style={{ color: isDark ? 'rgba(255,255,255,0.60)' : '#FFFFFF' }}
           >
-            An award-winning digital agency specializing in software development, web development, UI/UX design, and digital marketing. Dedicated to understanding and addressing your unique business challenges.
+            We design, build, and scale intelligent digital products through software engineering, exceptional design, and AI-powered solutions.
           </p>
         </div>
 

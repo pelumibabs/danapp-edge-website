@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
             <span className="text-gradient-why">choose us</span>
           </h2>
           <p className="text-xs sm:text-sm leading-relaxed sm:whitespace-nowrap" style={{ color: fgSecondary }}>
-            Real-world examples of how we have helped companies achieve their marketing objectives.
+            Delivering innovation, reliability, and results that move businesses forward.
           </p>
         </div>
 

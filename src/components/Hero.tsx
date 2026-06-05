@@ -232,8 +232,7 @@ export default function Hero() {
           className="text-xs sm:text-lg leading-relaxed mb-5 sm:mb-8 max-w-2xl px-2 sm:px-0"
           style={{ color: isDark ? 'rgba(255,255,255,0.6)' : '#0D0D0D' }}
         >
-          An award-winning digital agency solving business challenges through software development,
-          web development, UI/UX, and digital marketing.
+          We design, build, and scale intelligent digital products through software engineering, exceptional design, and AI-powered solutions.
         </p>
 
         {/* ── CTA ── */}
