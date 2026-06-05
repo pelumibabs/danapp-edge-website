@@ -73,7 +73,7 @@ export default function Navigation() {
       {/* ── Floating island ── */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 lg:px-8 pt-6">
         <nav
-          className="w-full max-w-[1200px] flex items-center justify-between gap-4 px-5 lg:px-6 h-[72px] transition-all duration-300"
+          className="w-full max-w-[1200px] flex items-center justify-between gap-4 px-5 lg:px-6 h-[54px] sm:h-[72px] transition-all duration-300"
           style={{
             borderRadius: 18,
             backgroundColor: scrolled
@@ -94,12 +94,10 @@ export default function Navigation() {
             className="flex items-center shrink-0"
           >
             <div
-              className="overflow-hidden rounded-xl"
+              className="overflow-hidden rounded-xl w-8 h-8 sm:w-11 sm:h-11"
               style={{
                 border: `1px solid rgba(253,94,60,0.22)`,
                 boxShadow: `0 0 12px rgba(253,94,60,0.14)`,
-                width: 44,
-                height: 44,
               }}
             >
               <img

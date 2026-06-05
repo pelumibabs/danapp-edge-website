@@ -15,7 +15,7 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-surface">
+      <div className="min-h-screen bg-surface w-full overflow-x-hidden">
         <Navigation />
         <main>
           <Hero />

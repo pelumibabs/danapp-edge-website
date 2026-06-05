@@ -143,18 +143,6 @@ export default function Footer() {
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
           <p className="text-xs" style={{ color: 'rgba(255,255,255,0.30)' }}>© {year} Danapp Edge. All rights reserved.</p>
-          <div className="flex gap-4">
-            {['Privacy', 'Terms', 'Cookies'].map((label) => (
-              <a
-                key={label} href="#" className="text-xs transition-colors"
-                style={{ color: 'rgba(255,255,255,0.30)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.60)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
 

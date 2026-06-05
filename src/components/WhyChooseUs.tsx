@@ -76,18 +76,18 @@ export default function WhyChooseUs() {
   return (
     <section
       id="why-us"
-      className="py-20 lg:py-28"
+      className="py-12 sm:py-20 lg:py-28"
       style={{ backgroundColor: isDark ? '#000000' : '#FDFCFF' }}
     >
       <div className="container-base">
 
         {/* Heading */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] font-bold leading-tight mb-4">
+        <div className="text-center mb-8 sm:mb-14">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl xl:text-[56px] font-bold leading-tight mb-3 sm:mb-4">
             <span style={{ color: isDark ? 'rgba(255,255,255,0.45)' : '#0D0D0D' }}>Why </span>
             <span className="text-gradient-why">choose us</span>
           </h2>
-          <p className="text-sm leading-relaxed whitespace-nowrap" style={{ color: fgSecondary }}>
+          <p className="text-xs sm:text-sm leading-relaxed sm:whitespace-nowrap" style={{ color: fgSecondary }}>
             Real-world examples of how we have helped companies achieve their marketing objectives.
           </p>
         </div>
@@ -96,21 +96,20 @@ export default function WhyChooseUs() {
         <div className="flex flex-col lg:flex-row gap-4">
 
           {/* ══ Left column (2/3) ══ */}
-          <div className="flex flex-col gap-4" style={{ flex: 2 }}>
+          <div className="flex flex-col gap-4 lg:w-[65%] 2xl:w-auto 2xl:flex-[2]">
 
             {/* ── 1. Exceptional Communication — 770×381 ── */}
             <div
-              className="flex flex-col sm:flex-row overflow-hidden shrink-0"
-              style={{ ...cards.exceptional, height: 381 }}
+              className="flex flex-col xl:flex-row overflow-hidden shrink-0 sm:h-[479px] xl:h-[381px]"
+              style={cards.exceptional}
             >
-              <div className="flex flex-col justify-between p-8 shrink-0 sm:w-[42%]" style={{ height: '100%' }}>
-                <div className="flex flex-col gap-5 mt-6">
-                  <h3 className="text-[28px] lg:text-[32px] font-bold leading-[1.2]">
-                    <span style={{ color: fgPrimary }}>Exceptional</span>
-                    <br />
+              <div className="flex flex-col justify-between pt-4 px-5 pb-3 xl:p-8 shrink-0 xl:w-[42%] xl:h-full">
+                <div className="flex flex-col gap-1.5 xl:gap-5 mt-1 xl:mt-6">
+                  <h3 className="text-base xl:text-[28px] xl:text-[32px] font-bold leading-[1.2]">
+                    <span style={{ color: fgPrimary }}>Exceptional </span>
                     <span style={{ color: '#8032E5' }}>Communication</span>
                   </h3>
-                  <p className="text-sm font-medium leading-loose" style={{ color: fgSecondary }}>
+                  <p className="text-xs xl:text-sm font-medium leading-relaxed xl:leading-loose" style={{ color: fgSecondary }}>
                     At Danapp Edge, we prioritize clear,
                     effective communication to align with
                     your goals
@@ -118,7 +117,7 @@ export default function WhyChooseUs() {
                 </div>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-70 mb-6"
+                  className="inline-flex items-center gap-2 text-xs xl:text-sm font-bold transition-opacity hover:opacity-70 mt-5 xl:mt-0 mb-0 xl:mb-6"
                   style={{ color: isDark ? '#FFFFFF' : '#8032E5' }}
                 >
                   Schedule a call
@@ -127,7 +126,7 @@ export default function WhyChooseUs() {
                   </svg>
                 </a>
               </div>
-              <div className="flex-1 relative overflow-hidden m-3 ml-0" style={{ borderRadius: 14 }}>
+              <div className="relative overflow-hidden mx-3 mb-3 mt-0 xl:ml-0 xl:m-3 h-[220px] sm:flex-1 sm:h-auto">
                 <img src="/comm-illustration.png" alt="" className="w-full h-full object-cover" style={{ borderRadius: 14 }} />
               </div>
             </div>
@@ -136,8 +135,8 @@ export default function WhyChooseUs() {
             <div className="flex flex-col sm:flex-row gap-4 flex-1">
 
               {/* ── 3. Our Mission ── */}
-              <div className="flex-1 p-6 flex flex-col" style={{ ...cards.mission, minHeight: 620 }}>
-                <div className="flex-1 flex items-start justify-center" style={{ marginLeft: -24, marginRight: -24, marginTop: -40 }}>
+              <div className="flex-1 p-5 sm:p-6 flex flex-col sm:min-h-[620px] overflow-hidden xl:overflow-visible" style={cards.mission}>
+                <div className="flex items-start justify-center min-h-[160px] sm:flex-1 sm:min-h-0" style={{ marginLeft: -24, marginRight: -24, marginTop: -40 }}>
                   <img
                     src={isDark ? '/mission-dark.png' : '/mission-light.png'}
                     alt=""
@@ -145,8 +144,8 @@ export default function WhyChooseUs() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-3" style={{ color: fgPrimary }}>Our Mission</h3>
-                  <p className="text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
+                  <h3 className="text-base xl:text-xl font-bold mb-2 xl:mb-3" style={{ color: fgPrimary }}>Our Mission</h3>
+                  <p className="text-xs xl:text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
                     At Danapp Edge, we envision a future where digital transformation is not just a service but a catalyst for global growth
                   </p>
                 </div>
@@ -156,9 +155,9 @@ export default function WhyChooseUs() {
               <div className="flex flex-col gap-4 flex-1">
 
                 {/* Projects completed */}
-                <div className="flex-1 flex flex-col overflow-hidden" style={{ ...cards.projects, padding: '24px 24px 24px' }}>
+                <div className="flex-1 flex flex-col overflow-hidden p-4 sm:p-6" style={cards.projects}>
                   {/* Label + 300+ — centered, positioned above icons */}
-                  <div className="flex-1 flex flex-col items-center justify-end pb-8">
+                  <div className="flex-1 flex flex-col items-center justify-end pb-8 lg:pb-16 2xl:pb-8">
                     <div className="flex items-center justify-center gap-2 mb-1">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke="#5F7660" strokeWidth="1.8" strokeLinecap="round"/>
@@ -174,34 +173,28 @@ export default function WhyChooseUs() {
                         letterSpacing: '-0.03em',
                       }}>Projects completed</p>
                     </div>
-                    <p style={isDark ? {
-                      fontFamily: 'Inter, sans-serif',
-                      fontWeight: 700,
-                      fontSize: 96,
-                      lineHeight: '96px',
-                      letterSpacing: '-0.02em',
-                      textAlign: 'center',
-                      background: 'linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      display: 'block',
-                    } : {
-                      color: '#0A360D',
-                      fontFamily: 'Inter, sans-serif',
-                      fontWeight: 700,
-                      fontSize: 96,
-                      lineHeight: '96px',
-                      letterSpacing: '-0.02em',
-                      textAlign: 'center',
-                    }}>300+</p>
+                    <p
+                      className="text-[60px] sm:text-[96px] font-bold text-center leading-none"
+                      style={isDark ? {
+                        fontFamily: 'Inter, sans-serif',
+                        letterSpacing: '-0.02em',
+                        background: 'linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        display: 'block',
+                      } : {
+                        color: '#0A360D',
+                        fontFamily: 'Inter, sans-serif',
+                        letterSpacing: '-0.02em',
+                      }}>300+</p>
                   </div>
                   {/* Icons — edge-to-edge */}
                   <img
                     src={isDark ? '/tech-icons-dark.png' : '/tech-icons.png'}
                     alt="Technologies"
-                    className="block shrink-0"
-                    style={{ marginLeft: -16, marginRight: -16, marginBottom: -16, width: 'calc(100% + 32px)', maxWidth: 'none', display: 'block' }}
+                    className="block shrink-0 w-full sm:-mx-4 sm:-mb-4 sm:w-[calc(100%+32px)]"
+                    style={{ maxWidth: 'none' }}
                   />
                 </div>
 
@@ -236,9 +229,9 @@ export default function WhyChooseUs() {
                   <div className="flex-1 min-h-[36px]" />
 
                   {/* Text — bottom */}
-                  <div className="relative z-10 pl-4 pr-3 pt-0 pb-6">
-                    <h3 className="text-xl font-bold mb-3" style={{ color: fgPrimary }}>Dedication Beyond</h3>
-                    <p className="font-medium leading-relaxed" style={{ color: fgSecondary, fontSize: 13 }}>
+                  <div className="relative z-10 pl-4 pr-3 pt-0 pb-4 sm:pb-6">
+                    <h3 className="text-base xl:text-xl font-bold mb-2 xl:mb-3" style={{ color: fgPrimary }}>Dedication Beyond</h3>
+                    <p className="text-xs lg:text-[10px] xl:text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
                       It's our unwavering dedication to your success that truly sets us apart. Your goals are our goals, and your satisfaction is our measure of achievement.
                     </p>
                   </div>
@@ -250,11 +243,11 @@ export default function WhyChooseUs() {
           </div>
 
           {/* ══ Right column (1/3) ══ */}
-          <div className="flex flex-col gap-4" style={{ flex: 1 }}>
+          <div className="flex flex-col gap-4 lg:w-[35%] 2xl:w-auto 2xl:flex-[1]">
 
             {/* ── 2. Our Vision — 479px fixed ── */}
-            <div className="px-6 pt-6 pb-10 flex flex-col shrink-0" style={{ ...cards.vision, height: 479 }}>
-              <div className="flex-1 flex items-center justify-center">
+            <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-6 sm:pb-10 lg:pb-4 2xl:pb-10 flex flex-col shrink-0 sm:h-[479px]" style={cards.vision}>
+              <div className="flex items-center justify-center min-h-[160px] sm:flex-1 sm:min-h-0">
                 <img
                   src={isDark ? '/light-bulb-dark.png' : '/light-bulb-light.png'}
                   alt=""
@@ -262,8 +255,8 @@ export default function WhyChooseUs() {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-3" style={{ color: fgPrimary }}>Our Vision</h3>
-                <p className="text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
+                <h3 className="text-base xl:text-xl font-bold mb-2 xl:mb-3" style={{ color: fgPrimary }}>Our Vision</h3>
+                <p className="text-xs xl:text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
                   At Danapp Edge, we envision a future where digital transformation is not just a service but a catalyst for global growth
                 </p>
               </div>
@@ -321,9 +314,12 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Title + subtitle — BOTTOM */}
-              <div className="mt-auto">
-                <h3 className="text-xl font-bold mb-3" style={{ color: fgPrimary }}>Unparalleled Expertise</h3>
-                <p className="text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
+              <div
+                className="mt-auto relative z-10 bg-[var(--expertise-bg)] sm:bg-transparent rounded-b-[18px]"
+                style={{ '--expertise-bg': isDark ? '#0B003F' : '#FAF6FD' } as React.CSSProperties}
+              >
+                <h3 className="text-base xl:text-xl font-bold mb-2 xl:mb-3" style={{ color: fgPrimary }}>Unparalleled Expertise</h3>
+                <p className="text-xs xl:text-sm font-medium leading-relaxed" style={{ color: fgSecondary }}>
                   Danapp Edge boasts a team of seasoned professionals, each an expert in their respective field.
                 </p>
               </div>

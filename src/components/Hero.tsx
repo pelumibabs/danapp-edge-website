@@ -119,7 +119,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center pt-32 pb-0 overflow-hidden"
+      className="relative xl:min-h-screen flex flex-col items-center pt-24 sm:pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: isDark ? '#000000' : '#FFF9F6' }}
     >
       {/* ── Floating accent dots ── */}
@@ -140,35 +140,35 @@ export default function Hero() {
 
         {/* ── Badge ── */}
         <div
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
+          className="inline-flex items-center gap-1 sm:gap-2 rounded-full px-2 sm:px-4 py-1 sm:py-2 mb-5 sm:mb-8"
           style={{
             backgroundColor: isDark ? '#111119' : '#FFEEE0',
             border: isDark ? '1px solid rgba(255,255,255,0.12)' : 'none',
           }}
         >
           <span
-            className="flex items-center justify-center w-8 h-8 rounded-full text-white text-sm font-bold shrink-0"
+            className="flex items-center justify-center w-5 h-5 sm:w-8 sm:h-8 rounded-full text-white text-[10px] sm:text-sm font-bold shrink-0"
             style={{ backgroundColor: '#FD5E3C' }}
           >
             $
           </span>
-          <span className="text-sm font-semibold" style={{ color: isDark ? 'rgba(255,255,255,0.85)' : '#0D0D0D' }}>
+          <span className="text-[10px] sm:text-sm font-semibold" style={{ color: isDark ? 'rgba(255,255,255,0.85)' : '#0D0D0D' }}>
             We have helped businesses raise over $1M in revenue
           </span>
         </div>
 
         {/* ── Headline (grid only here) ── */}
-        <div className="relative mb-6">
+        <div className="relative mb-4 sm:mb-6">
           <div
             className="absolute -inset-x-12 -inset-y-6 pointer-events-none bg-grid"
             style={{ opacity: isDark ? 0.45 : 0.55 }}
           />
           <h1
-            className="relative text-4xl sm:text-5xl lg:text-[64px] xl:text-[72px] font-semibold leading-[1.15] tracking-tight"
+            className="relative text-[26px] sm:text-5xl lg:text-[64px] xl:text-[72px] font-semibold leading-[1.15] tracking-tight"
             style={{ color: isDark ? '#FFFFFF' : '#1A0800' }}
           >
             <span
-              className="block mb-5 pb-2"
+              className="block mb-2 sm:mb-5 pb-1 sm:pb-2"
               style={isDark ? {
                 background: 'linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%)',
                 WebkitBackgroundClip: 'text',
@@ -176,7 +176,7 @@ export default function Hero() {
                 backgroundClip: 'text',
               } : {}}
             >Stay ahead of the curve</span>
-            <span className="inline-flex items-baseline gap-6 flex-wrap justify-center">
+            <span className="inline-flex items-baseline gap-2 sm:gap-6 flex-wrap justify-center">
               <span
                 style={isDark ? {
                   background: 'linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%)',
@@ -188,7 +188,7 @@ export default function Hero() {
 
               {/* ── Rotating word in orange-shadow box ── */}
               <span
-                className="inline-block px-7 pt-2 pb-4 rounded-xl"
+                className="inline-block px-3 sm:px-7 pt-1 sm:pt-2 pb-2 sm:pb-4 rounded-xl"
                 style={{
                   border: isDark
                     ? `1.5px solid rgba(253,94,60,0.45)`
@@ -229,7 +229,7 @@ export default function Hero() {
 
         {/* ── Subtitle ── */}
         <p
-          className="text-base sm:text-lg leading-relaxed mb-8 max-w-2xl"
+          className="text-xs sm:text-lg leading-relaxed mb-5 sm:mb-8 max-w-2xl px-2 sm:px-0"
           style={{ color: isDark ? 'rgba(255,255,255,0.6)' : '#0D0D0D' }}
         >
           An award-winning digital agency solving business challenges through software development,
@@ -239,7 +239,7 @@ export default function Hero() {
         {/* ── CTA ── */}
         <a
           href="#contact"
-          className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-85 mb-14"
+          className="inline-flex items-center justify-center w-auto px-6 py-2.5 sm:w-auto sm:px-8 sm:py-3.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 hover:opacity-85 mb-8 sm:mb-14"
           style={
             isDark
               ? { backgroundColor: '#FFFFFF', color: '#141414', border: 'none' }
@@ -288,7 +288,7 @@ export default function Hero() {
         </div>
 
         {/* ── Trusted by ── */}
-        <div className="w-full mt-12 pb-16">
+        <div className="w-full mt-8 sm:mt-12 pb-8 sm:pb-16">
           <p
             className="text-sm font-semibold mb-6 text-center"
             style={{ color: isDark ? 'rgba(255,255,255,0.5)' : '#0D0D0D' }}
@@ -298,7 +298,7 @@ export default function Hero() {
           <div className="overflow-hidden">
             <div className="marquee-track-reverse">
               {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((Logo, i) => (
-                <div key={i} className="px-12 shrink-0" style={{ color: isDark ? '#FFFFFF' : '#0D0D0D' }}>
+                <div key={i} className="px-6 sm:px-12 shrink-0" style={{ color: isDark ? '#FFFFFF' : '#0D0D0D' }}>
                   <Logo muted />
                 </div>
               ))}
