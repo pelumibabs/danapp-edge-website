@@ -111,13 +111,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="mailto:info@danappedge.com"
                   className="text-sm transition-colors duration-200"
                   style={{ color: 'rgba(255,255,255,0.38)' }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.38)')}
                 >
-                  Schedule a call
+                  Contact us
                 </a>
               </li>
             </ul>

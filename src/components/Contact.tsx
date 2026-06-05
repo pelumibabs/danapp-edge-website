@@ -88,7 +88,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-20 lg:py-32 overflow-hidden"
+      className="relative py-10 lg:py-32 overflow-hidden"
       style={{ backgroundColor: '#090014' }}
     >
       {/* ── Grid ── */}
@@ -111,13 +111,13 @@ export default function Contact() {
       </div>
 
       <div className="container-base relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-52 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 xl:gap-52 items-start">
 
           {/* ── Left: copy — pushed down ── */}
-          <div style={{ paddingTop: 48 }}>
+          <div style={{ paddingTop: 48 }} className="lg:pl-0 xl:pl-0">
             {/* Metallic heading — always dark section so apply gradient directly */}
             <h2
-              className="text-4xl sm:text-5xl lg:text-[56px] font-bold leading-tight mb-5 whitespace-nowrap"
+              className="text-4xl sm:text-5xl lg:text-[38px] xl:text-[56px] font-bold leading-tight mb-5 xl:whitespace-nowrap"
               style={{
                 background: 'linear-gradient(180deg, #FFFFFF 30%, #7A7A7A 100%)',
                 WebkitBackgroundClip: 'text',
@@ -134,25 +134,27 @@ export default function Contact() {
 
             {/* Trusted by strip */}
             <div
-              className="flex items-center gap-5 rounded-2xl px-5 py-4 mb-10"
+              className="flex items-center gap-4 rounded-2xl px-5 py-4 mb-10 overflow-hidden"
               style={{
                 backgroundColor: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.10)',
               }}
             >
               <span className="text-sm shrink-0" style={{ color: 'rgba(255,255,255,0.45)' }}>Trusted by:</span>
-              <div className="flex items-center gap-6">
-                {PARTNERS.map((p) => (
-                  <div key={p.initials} className="flex items-center gap-2 opacity-60 hover:opacity-90 transition-opacity">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold"
-                      style={{ backgroundColor: 'rgba(124,58,237,0.25)', border: '1px solid rgba(124,58,237,0.30)', color: '#C4B5FD' }}
-                    >
-                      {p.initials}
+              <div className="overflow-hidden flex-1">
+                <div className="marquee-track-reverse">
+                  {[...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS].map((p, i) => (
+                    <div key={i} className="flex items-center gap-2 px-6 shrink-0" style={{ opacity: 0.55 }}>
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF' }}
+                      >
+                        {p.initials}
+                      </div>
+                      <span className="text-sm font-semibold tracking-tight" style={{ color: '#FFFFFF' }}>{p.name}</span>
                     </div>
-                    <span className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.65)' }}>{p.name}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -167,7 +169,7 @@ export default function Contact() {
 
           {/* ── Right: form card — dark glass, bleeds to right edge ── */}
           <div
-            className="rounded-2xl p-6 sm:p-8 lg:-mr-[140px]"
+            className="rounded-2xl p-6 sm:p-8 lg:-mr-[80px] xl:-mr-[140px]"
             style={{
               backgroundColor: 'rgba(8,4,20,0.85)',
               border: '1px solid rgba(255,255,255,0.10)',
@@ -240,7 +242,7 @@ export default function Contact() {
                   className="w-full h-12 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 active:scale-[0.98] mt-1"
                   style={{ backgroundColor: '#FFFFFF', color: '#09090E' }}
                 >
-                  Schedule a call
+                  Contact us
                 </button>
 
               </form>

@@ -99,7 +99,7 @@ export default function Portfolio() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="portfolio" className="py-20 lg:py-28" style={{ backgroundColor: isDark ? '#000000' : '#FDFCFF' }}>
+    <section id="portfolio" className="py-10 lg:py-28" style={{ backgroundColor: isDark ? '#000000' : '#FDFCFF' }}>
       <div className="container-base">
 
         {/* ── Heading ── */}

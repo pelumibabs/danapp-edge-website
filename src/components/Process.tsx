@@ -93,6 +93,13 @@ const glassEdges = [
   '0 24px 64px rgba(70,15,144,0.38)',
 ].join(', ')
 
+const glassEdgesMobile = [
+  'inset 0 1px 0 rgba(255,255,255,0.38)',
+  'inset 1px 0 0 rgba(255,255,255,0.16)',
+  'inset -1px 0 0 rgba(255,255,255,0.08)',
+  'inset 0 -1px 0 rgba(255,255,255,0.06)',
+].join(', ')
+
 export default function Process() {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
@@ -101,7 +108,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="py-20 lg:py-28"
+      className="pt-10 pb-6 lg:py-28"
       style={{ backgroundColor: isDark ? '#000000' : '#FFFFFF' }}
     >
       <div className="container-base">
@@ -377,14 +384,15 @@ export default function Process() {
           className="flex gap-4 lg:hidden overflow-x-auto snap-x snap-mandatory"
           style={{
             paddingTop: 26,
-            paddingBottom: 8,
+            paddingBottom: 16,
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
             WebkitOverflowScrolling: 'touch',
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           }}
         >
           {STEPS.map((step, idx) => (
-            <div key={step.title} className="relative shrink-0 snap-start" style={{ width: 'calc(85vw - 16px)' }}>
+            <div key={step.title} className="relative shrink-0 snap-start pb-10" style={{ width: 'calc(85vw - 16px)' }}>
 
               {/* Number badge — centred on top edge */}
               <div
@@ -415,7 +423,7 @@ export default function Process() {
                     ? 'linear-gradient(155deg, #1E0660 0%, #150448 10%, #0E0230 22%, #090018 38%, #090014 58%, #090014 100%)'
                     : 'linear-gradient(155deg, #C5A5EE 0%, #B07AE8 10%, #9861E0 22%, #7B42C8 36%, #5E20A2 50%, #460F90 64%, #3B0D78 80%, #2E0A5E 100%)',
                   border: '1px solid rgba(255,255,255,0.22)',
-                  boxShadow: glassEdges,
+                  boxShadow: glassEdgesMobile,
                 }}
               >
                 {/* Sparkle dots */}
@@ -478,22 +486,23 @@ export default function Process() {
                   </div>
                 </div>
 
-                {/* 3D illustration — bottom right, same as desktop */}
-                <img
-                  src={`/${step.title.toLowerCase()}.png`}
-                  alt={step.title}
-                  className="absolute pointer-events-none"
-                  style={{
-                    width: step.title === 'Discover' ? '88%' : step.title === 'Design' ? '90%' : step.title === 'Develop' ? '78%' : '85%',
-                    height: 'auto',
-                    zIndex: 15,
-                    filter: 'drop-shadow(0 20px 14px rgba(0,0,0,0.50))',
-                    right: step.title === 'Discover' ? -40 : step.title === 'Design' ? -35 : step.title === 'Develop' ? -30 : -45,
-                    bottom: -35,
-                    transform: (step.title === 'Discover' || step.title === 'Deliver') ? 'scaleX(-1)' : undefined,
-                  }}
-                />
               </div>
+
+              {/* 3D illustration — outside card so it drops below boundary */}
+              <img
+                src={`/${step.title.toLowerCase()}.png`}
+                alt={step.title}
+                className="absolute pointer-events-none"
+                style={{
+                  width: step.title === 'Discover' ? '88%' : step.title === 'Design' ? '90%' : step.title === 'Develop' ? '78%' : '85%',
+                  height: 'auto',
+                  zIndex: 15,
+                  filter: 'drop-shadow(0 20px 14px rgba(0,0,0,0.50))',
+                  right: step.title === 'Discover' ? -40 : step.title === 'Design' ? -35 : step.title === 'Develop' ? -30 : -45,
+                  bottom: 30,
+                  transform: (step.title === 'Discover' || step.title === 'Deliver') ? 'scaleX(-1)' : undefined,
+                }}
+              />
             </div>
           ))}
         </div>

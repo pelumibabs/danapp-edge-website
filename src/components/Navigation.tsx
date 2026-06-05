@@ -137,10 +137,9 @@ export default function Navigation() {
           {/* ── Desktop right: CTA + toggle ── */}
           <div className="hidden lg:flex items-center gap-3">
 
-            {/* Schedule a call — semi-rounded, charcoal gradient in light / white in dark */}
+            {/* Contact us — semi-rounded, charcoal gradient in light / white in dark */}
             <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
+              href="mailto:info@danappedge.com"
               className="px-5 py-[10px] text-sm font-semibold transition-opacity duration-200 hover:opacity-85 focus:outline-none"
               style={{
                 borderRadius: 10,
@@ -150,7 +149,7 @@ export default function Navigation() {
                   : 'linear-gradient(180deg, #141414 0%, #3F3F3F 100%)',
               }}
             >
-              Schedule a call
+              Contact us
             </a>
 
             {/* Sun / Moon — separate icon buttons in orange-glow pill */}
@@ -280,8 +279,7 @@ export default function Navigation() {
 
           <div className="mt-6 pt-6" style={{ borderTop: `1px solid rgba(253,94,60,0.14)` }}>
             <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
+              href="mailto:info@danappedge.com"
               className="block w-full py-3 text-sm font-semibold text-center transition-opacity hover:opacity-85"
               style={{
                 borderRadius: 10,
@@ -291,7 +289,7 @@ export default function Navigation() {
                   : 'linear-gradient(180deg, #141414 0%, #3F3F3F 100%)',
               }}
             >
-              Schedule a call
+              Contact us
             </a>
           </div>
         </div>

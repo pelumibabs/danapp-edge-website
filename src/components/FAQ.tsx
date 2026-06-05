@@ -60,7 +60,7 @@ export default function FAQ() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="faq" className="py-20 lg:py-28" style={{ backgroundColor: isDark ? '#000000' : 'var(--bg-section)' }}>
+    <section id="faq" className="py-10 lg:py-28" style={{ backgroundColor: isDark ? '#000000' : 'var(--bg-section)' }}>
       <div className="container-base">
         <div className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] font-bold leading-tight mb-4">

@@ -116,11 +116,11 @@ export default function WhyChooseUs() {
                   </p>
                 </div>
                 <a
-                  href="#contact"
+                  href="mailto:info@danappedge.com"
                   className="inline-flex items-center gap-2 text-xs xl:text-sm font-bold transition-opacity hover:opacity-70 mt-5 xl:mt-0 mb-0 xl:mb-6"
                   style={{ color: isDark ? '#FFFFFF' : '#8032E5' }}
                 >
-                  Schedule a call
+                  Contact us
                   <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
                     <path d="M3 8h10M9.5 4.5l3.5 3.5-3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

@@ -130,14 +130,14 @@ export default function AboutUs() {
 
         {/* CTA — matches hero button */}
         <a
-          href="#contact"
+          href="mailto:info@danappedge.com"
           className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-85"
           style={isDark
             ? { backgroundColor: '#FFFFFF', color: '#141414' }
             : { background: 'linear-gradient(180deg, #141414 0%, #3F3F3F 100%)', color: '#FFFFFF' }
           }
         >
-          Schedule a call
+          Contact us
         </a>
 
       </div>

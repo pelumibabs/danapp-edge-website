@@ -238,7 +238,7 @@ export default function Hero() {
 
         {/* ── CTA ── */}
         <a
-          href="#contact"
+          href="mailto:info@danappedge.com"
           className="inline-flex items-center justify-center w-auto px-6 py-2.5 sm:w-auto sm:px-8 sm:py-3.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 hover:opacity-85 mb-8 sm:mb-14"
           style={
             isDark
@@ -246,7 +246,7 @@ export default function Hero() {
               : { background: 'linear-gradient(180deg, #141414 0%, #3F3F3F 100%)', color: '#FFFFFF', border: 'none' }
           }
         >
-          Schedule a call
+          Contact us
         </a>
 
         {/* ── Video placeholder ── */}

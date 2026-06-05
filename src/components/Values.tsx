@@ -7,7 +7,7 @@ export default function Values() {
   return (
     <section
       id="values"
-      className="py-20 lg:py-28"
+      className="py-10 lg:py-28"
       style={{ backgroundColor: isDark ? '#000000' : '#FDFCFF' }}
     >
       <div className="container-base">
