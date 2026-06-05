@@ -372,53 +372,128 @@ export default function Process() {
           })}
         </div>
 
-        {/* ── Mobile: vertical stacked cards ── */}
-        <div className="flex flex-col gap-4 lg:hidden">
+        {/* ── Mobile: horizontal snap carousel ── */}
+        <div
+          className="flex gap-4 lg:hidden overflow-x-auto snap-x snap-mandatory"
+          style={{
+            paddingTop: 26,
+            paddingBottom: 8,
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch',
+          }}
+        >
           {STEPS.map((step, idx) => (
-            <div
-              key={step.title}
-              className="rounded-2xl p-6"
-              style={{
-                background: isDark
-                  ? 'linear-gradient(155deg, #1E0660 0%, #150448 10%, #0E0230 22%, #090018 38%, #090014 58%, #090014 100%)'
-                  : 'linear-gradient(155deg, #C5A5EE 0%, #B07AE8 10%, #9861E0 22%, #7B42C8 36%, #5E20A2 50%, #460F90 64%, #3B0D78 80%, #2E0A5E 100%)',
-                border: '1px solid rgba(255,255,255,0.18)',
-                boxShadow: glassEdges,
-              }}
-            >
-              <span className="text-sm font-bold block mb-3" style={{ color: '#FD5E3C' }}>
-                0{idx + 1}
-              </span>
-              <div className="flex flex-wrap gap-2 mb-5">
-                {step.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full text-xs font-semibold"
-                    style={isDark ? {
-                      backgroundColor: 'rgba(255,255,255,0.14)',
-                      border: '1px solid rgba(255,255,255,0.22)',
-                      color: '#FFFFFF',
-                    } : {
-                      backgroundColor: '#FFFFFF',
-                      border: '1px solid rgba(0,0,0,0.10)',
-                      color: '#1A1A1A',
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+            <div key={step.title} className="relative shrink-0 snap-start" style={{ width: 'calc(85vw - 16px)' }}>
+
+              {/* Number badge — centred on top edge */}
+              <div
+                className="absolute left-1/2 z-20 flex items-center justify-center font-bold"
+                style={{
+                  top: 0,
+                  transform: 'translate(-50%, -50%)',
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  backgroundColor: isDark ? '#111111' : '#FFFFFF',
+                  border: '1.5px solid rgba(197,165,238,0.55)',
+                  boxShadow: '0 0 0 4px rgba(70,15,144,0.18)',
+                  fontSize: 14,
+                  lineHeight: 1,
+                  color: '#FD5E3C',
+                }}
+              >
+                {idx + 1}
               </div>
-              <div className="flex justify-center mb-5">
-                <div style={{ width: 100, height: 100 }}>
-                  <StepIllustration step={idx} active={true} isDark={isDark} />
+
+              {/* Card */}
+              <div
+                className="relative rounded-2xl overflow-hidden flex flex-col"
+                style={{
+                  height: 420,
+                  background: isDark
+                    ? 'linear-gradient(155deg, #1E0660 0%, #150448 10%, #0E0230 22%, #090018 38%, #090014 58%, #090014 100%)'
+                    : 'linear-gradient(155deg, #C5A5EE 0%, #B07AE8 10%, #9861E0 22%, #7B42C8 36%, #5E20A2 50%, #460F90 64%, #3B0D78 80%, #2E0A5E 100%)',
+                  border: '1px solid rgba(255,255,255,0.22)',
+                  boxShadow: glassEdges,
+                }}
+              >
+                {/* Sparkle dots */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  {([
+                    { top: '7%',  left: '78%', size: 2.5, dur: 2.2, delay: 0   },
+                    { top: '4%',  left: '90%', size: 1.5, dur: 3.1, delay: 0.9 },
+                    { top: '22%', left: '94%', size: 2,   dur: 2.7, delay: 1.5 },
+                    { top: '74%', left: '80%', size: 1.5, dur: 2.6, delay: 0.7 },
+                    { top: '12%', left: '8%',  size: 1.5, dur: 2.8, delay: 1.0 },
+                    { top: '65%', left: '6%',  size: 1.5, dur: 2.5, delay: 1.7 },
+                  ] as const).map((dot, i) => (
+                    <div
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        top: dot.top, left: dot.left,
+                        width: dot.size, height: dot.size,
+                        backgroundColor: 'rgba(255,255,255,0.35)',
+                        animation: `twinkle ${dot.dur}s ease-in-out ${dot.delay}s infinite`,
+                      }}
+                    />
+                  ))}
                 </div>
+
+                {/* Content */}
+                <div className="relative flex flex-col h-full p-5 pt-7" style={{ zIndex: 10 }}>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 shrink-0">
+                    {step.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 rounded-full text-xs font-semibold"
+                        style={isDark ? {
+                          backgroundColor: 'rgba(255,255,255,0.14)',
+                          border: '1px solid rgba(255,255,255,0.22)',
+                          color: '#FFFFFF',
+                        } : {
+                          backgroundColor: '#FFFFFF',
+                          border: '1px solid rgba(0,0,0,0.10)',
+                          color: '#1A1A1A',
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex-1" />
+
+                  {/* Title + subtitle — bottom left */}
+                  <div className="shrink-0" style={{ maxWidth: '55%' }}>
+                    <h3 className="text-2xl font-bold mb-1.5" style={{ color: '#FFFFFF' }}>
+                      {step.title}
+                    </h3>
+                    <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.68)' }}>
+                      {step.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3D illustration — bottom right, same as desktop */}
+                <img
+                  src={`/${step.title.toLowerCase()}.png`}
+                  alt={step.title}
+                  className="absolute pointer-events-none"
+                  style={{
+                    width: step.title === 'Discover' ? '88%' : step.title === 'Design' ? '90%' : step.title === 'Develop' ? '78%' : '85%',
+                    height: 'auto',
+                    zIndex: 15,
+                    filter: 'drop-shadow(0 20px 14px rgba(0,0,0,0.50))',
+                    right: step.title === 'Discover' ? -40 : step.title === 'Design' ? -35 : step.title === 'Develop' ? -30 : -45,
+                    bottom: -35,
+                    transform: (step.title === 'Discover' || step.title === 'Deliver') ? 'scaleX(-1)' : undefined,
+                  }}
+                />
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#FFFFFF' }}>
-                {step.title}
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.70)' }}>
-                {step.subtitle}
-              </p>
             </div>
           ))}
         </div>

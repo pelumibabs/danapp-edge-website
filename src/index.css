@@ -270,3 +270,5 @@
   0%, 100% { opacity: 0.85; transform: scale(1); }
   50%       { opacity: 0.12; transform: scale(0.5); }
 }
+
+.snap-x::-webkit-scrollbar { display: none; }
