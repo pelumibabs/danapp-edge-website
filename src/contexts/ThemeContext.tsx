@@ -12,15 +12,13 @@ const ThemeContext = createContext<ThemeCtx>({ theme: 'dark', toggle: () => {} }
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
-      const saved = localStorage.getItem('danapp-theme') as Theme | null
-      if (saved) return saved
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
     } catch {}
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    return 'dark'
   })
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    try { localStorage.setItem('danapp-theme', theme) } catch {}
   }, [theme])
 
   const toggle = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))

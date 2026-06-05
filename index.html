@@ -5,8 +5,7 @@
     <script>
       (function () {
         try {
-          var saved = localStorage.getItem('danapp-theme')
-          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          var theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
           document.documentElement.setAttribute('data-theme', theme)
         } catch (e) {}
       })()
