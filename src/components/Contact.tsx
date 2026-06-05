@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { supabase } from '../lib/supabase'
 
 const PARTNERS = [
   { initials: 'TV', name: 'TechVentures' },
@@ -32,6 +33,7 @@ const SPARKLES = [
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const validate = () => {
@@ -43,11 +45,20 @@ export default function Contact() {
     return e
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) { setErrors(errs); return }
     setErrors({})
+    setSubmitting(true)
+    const { error } = await supabase
+      .from('contact_submissions')
+      .insert({ name: form.name.trim(), email: form.email.trim(), message: form.message.trim() })
+    setSubmitting(false)
+    if (error) {
+      setErrors({ message: 'Something went wrong. Please try again.' })
+      return
+    }
     setSubmitted(true)
   }
 
@@ -182,9 +193,13 @@ export default function Contact() {
               <div className="flex flex-col items-center justify-center py-14 text-center gap-4">
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
-                  style={{ backgroundColor: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.30)' }}
+                  style={{
+                    backgroundColor: 'rgba(34,197,94,0.15)',
+                    border: '1px solid rgba(34,197,94,0.30)',
+                    animation: 'thumbs-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                  }}
                 >
-                  ✅
+                  👍
                 </div>
                 <h3 className="text-xl font-bold text-white">Message sent!</h3>
                 <p className="text-sm max-w-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -239,10 +254,11 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full h-12 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 active:scale-[0.98] mt-1"
+                  disabled={submitting}
+                  className="w-full h-12 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 active:scale-[0.98] mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ backgroundColor: '#FFFFFF', color: '#09090E' }}
                 >
-                  Contact us
+                  {submitting ? 'Sending...' : 'Contact us'}
                 </button>
 
               </form>
