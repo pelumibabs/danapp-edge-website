@@ -106,16 +106,6 @@ function TestimonialCard({ t, isDark }: { t: typeof TESTIMONIALS[0]; isDark: boo
         className="flex items-center gap-3 pt-4"
         style={{ borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}` }}
       >
-        <div
-          className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center"
-          style={{
-            background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(124,58,237,0.15))',
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.06)'}`,
-          }}
-        >
-          <span className="text-xs font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
-        </div>
-
         <div>
           <p className="text-sm font-semibold" style={{ color: isDark ? '#FFFFFF' : '#0F172A' }}>
             {t.name}
@@ -176,24 +166,6 @@ export default function Testimonials() {
 
           {/* ── Social proof bar ── */}
           <div className="inline-flex items-center gap-4">
-            {/* Overlapping avatars */}
-            <div className="flex">
-              {TESTIMONIALS.slice(0, 4).map((t, i) => (
-                <div
-                  key={t.id}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{
-                    marginLeft: i === 0 ? 0 : -12,
-                    zIndex: 10 - i,
-                    background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(124,58,237,0.15))',
-                    border: `2px solid ${isDark ? '#000000' : '#FDFCFF'}`,
-                  }}
-                >
-                  <span className="text-[10px] font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
-                </div>
-              ))}
-            </div>
-
             {/* Stars + label */}
             <div className="flex flex-col items-start gap-0.5">
               <div className="flex gap-1">
