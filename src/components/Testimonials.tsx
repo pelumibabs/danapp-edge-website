@@ -22,19 +22,19 @@ const TESTIMONIALS = [
   {
     id: 3,
     quote: "From strategy to deployment, the team was sharp, communicative and genuinely invested in our success. Our user retention jumped 40% within a month of launch. Highly recommend.",
-    name: 'Tyler Anderson',
+    name: 'Marcus Reid',
     role: 'VP of Engineering, Cortex',
-    initials: 'TA',
-    image: 'https://randomuser.me/api/portraits/men/85.jpg',
+    initials: 'MR',
+    image: 'https://randomuser.me/api/portraits/men/11.jpg',
     stars: 5,
   },
   {
     id: 4,
     quote: "They didn't just build what we asked for. They challenged our thinking and delivered something better. The product is clean, fast, and exactly what our customers needed.",
-    name: 'Ashley Morgan',
+    name: 'Zara Thompson',
     role: 'Senior Product Manager, Ledger',
-    initials: 'AM',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
+    initials: 'ZT',
+    image: 'https://randomuser.me/api/portraits/women/19.jpg',
     stars: 5,
   },
   {
@@ -171,7 +171,7 @@ export default function Testimonials() {
               {TESTIMONIALS.slice(0, 4).map((t, i) => (
                 <div
                   key={t.id}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  className="w-10 h-10 rounded-full overflow-hidden relative flex items-center justify-center"
                   style={{
                     marginLeft: i === 0 ? 0 : -12,
                     zIndex: 10 - i,
@@ -180,6 +180,12 @@ export default function Testimonials() {
                   }}
                 >
                   <span className="text-[10px] font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                  />
                 </div>
               ))}
             </div>
