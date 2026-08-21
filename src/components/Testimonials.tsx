@@ -166,6 +166,24 @@ export default function Testimonials() {
 
           {/* ── Social proof bar ── */}
           <div className="inline-flex items-center gap-4">
+            {/* Overlapping avatars */}
+            <div className="flex">
+              {TESTIMONIALS.slice(0, 4).map((t, i) => (
+                <div
+                  key={t.id}
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{
+                    marginLeft: i === 0 ? 0 : -12,
+                    zIndex: 10 - i,
+                    background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(124,58,237,0.15))',
+                    border: `2px solid ${isDark ? '#000000' : '#FDFCFF'}`,
+                  }}
+                >
+                  <span className="text-[10px] font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
+                </div>
+              ))}
+            </div>
+
             {/* Stars + label */}
             <div className="flex flex-col items-start gap-0.5">
               <div className="flex gap-1">
