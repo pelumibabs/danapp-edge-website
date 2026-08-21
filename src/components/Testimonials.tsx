@@ -107,19 +107,13 @@ function TestimonialCard({ t, isDark }: { t: typeof TESTIMONIALS[0]; isDark: boo
         style={{ borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}` }}
       >
         <div
-          className="w-11 h-11 rounded-full overflow-hidden shrink-0 flex items-center justify-center relative"
+          className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center"
           style={{
             background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(124,58,237,0.15))',
             border: `1px solid ${isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.06)'}`,
           }}
         >
           <span className="text-xs font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
-          <img
-            src={t.image}
-            alt={t.name}
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
-          />
         </div>
 
         <div>
@@ -187,7 +181,7 @@ export default function Testimonials() {
               {TESTIMONIALS.slice(0, 4).map((t, i) => (
                 <div
                   key={t.id}
-                  className="w-10 h-10 rounded-full overflow-hidden relative flex items-center justify-center"
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
                   style={{
                     marginLeft: i === 0 ? 0 : -12,
                     zIndex: 10 - i,
@@ -196,12 +190,6 @@ export default function Testimonials() {
                   }}
                 >
                   <span className="text-[10px] font-bold" style={{ color: '#7C3AED' }}>{t.initials}</span>
-                  <img
-                    src={t.image}
-                    alt={t.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
-                  />
                 </div>
               ))}
             </div>
