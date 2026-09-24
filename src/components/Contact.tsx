@@ -54,7 +54,6 @@ export default function Contact() {
   // Mount / remount the widget whenever the form is visible (submitted toggles it).
   useEffect(() => {
     if (submitted) {
-      // Form hidden — clean up widget so a fresh one is created on "Send another".
       try {
         if (window.turnstile && widgetId.current) {
           window.turnstile.remove(widgetId.current)
@@ -67,7 +66,7 @@ export default function Contact() {
 
     const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string
 
-    const render = () => {
+    const renderWidget = () => {
       if (!window.turnstile || !turnstileRef.current || widgetId.current) return
       widgetId.current = window.turnstile.render(turnstileRef.current, {
         sitekey,
@@ -78,15 +77,26 @@ export default function Contact() {
       })
     }
 
+    // Case 1: script already executed (index.html tag loaded before React mounted)
     if (window.turnstile) {
-      render()
-    } else {
-      // Script loads async — poll until ready (clears in < 1 s on fast connections).
-      const iv = setInterval(() => {
-        if (window.turnstile) { clearInterval(iv); render() }
-      }, 100)
-      return () => clearInterval(iv)
+      renderWidget()
+      return
     }
+
+    // Case 2: a <script> tag exists but hasn't finished loading yet
+    const existing = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')
+    if (existing) {
+      existing.addEventListener('load', renderWidget, { once: true })
+      return () => existing.removeEventListener('load', renderWidget)
+    }
+
+    // Case 3: no script tag at all — inject it ourselves
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+    script.async = true
+    script.defer = true
+    script.onload = renderWidget
+    document.head.appendChild(script)
   }, [submitted])
 
   const resetTurnstile = () => {
