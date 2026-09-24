@@ -1,5 +1,16 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
+
+// Minimal shape of the Cloudflare Turnstile API on window
+interface TurnstileAPI {
+  render: (el: HTMLElement, opts: Record<string, unknown>) => string
+  reset: (id: string) => void
+  remove: (id: string) => void
+}
+
+declare global {
+  interface Window { turnstile?: TurnstileAPI }
+}
 
 const PARTNERS = [
   { initials: 'TV', name: 'TechVentures' },
@@ -35,6 +46,57 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [token, setToken] = useState<string | null>(null)
+
+  const turnstileRef = useRef<HTMLDivElement>(null)
+  const widgetId = useRef<string | null>(null)
+
+  // Mount / remount the widget whenever the form is visible (submitted toggles it).
+  useEffect(() => {
+    if (submitted) {
+      // Form hidden — clean up widget so a fresh one is created on "Send another".
+      try {
+        if (window.turnstile && widgetId.current) {
+          window.turnstile.remove(widgetId.current)
+        }
+      } catch { /* ignore — container already gone */ }
+      widgetId.current = null
+      setToken(null)
+      return
+    }
+
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string
+
+    const render = () => {
+      if (!window.turnstile || !turnstileRef.current || widgetId.current) return
+      widgetId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey,
+        theme: 'dark',
+        callback: (t: string) => setToken(t),
+        'error-callback': () => setToken(null),
+        'expired-callback': () => setToken(null),
+      })
+    }
+
+    if (window.turnstile) {
+      render()
+    } else {
+      // Script loads async — poll until ready (clears in < 1 s on fast connections).
+      const iv = setInterval(() => {
+        if (window.turnstile) { clearInterval(iv); render() }
+      }, 100)
+      return () => clearInterval(iv)
+    }
+  }, [submitted])
+
+  const resetTurnstile = () => {
+    try {
+      if (window.turnstile && widgetId.current) {
+        window.turnstile.reset(widgetId.current)
+      }
+    } catch { /* ignore */ }
+    setToken(null)
+  }
 
   const validate = () => {
     const e: Record<string, string> = {}
@@ -49,16 +111,22 @@ export default function Contact() {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    if (!token) { setErrors({ captcha: 'Please complete the security check.' }); return }
     setErrors({})
     setSubmitting(true)
-    const { error } = await supabase
-      .from('contact_submissions')
-      .insert({ name: form.name.trim(), email: form.email.trim(), message: form.message.trim() })
+
+    const { error } = await supabase.functions.invoke('submit-contact', {
+      body: { name: form.name.trim(), email: form.email.trim(), message: form.message.trim(), token },
+    })
+
     setSubmitting(false)
+
     if (error) {
       setErrors({ message: 'Something went wrong. Please try again.' })
+      resetTurnstile()
       return
     }
+
     setSubmitted(true)
   }
 
@@ -126,7 +194,6 @@ export default function Contact() {
 
           {/* ── Left: copy — pushed down ── */}
           <div style={{ paddingTop: 48 }} className="lg:pl-0 xl:pl-0">
-            {/* Metallic heading — always dark section so apply gradient directly */}
             <h2
               className="text-4xl sm:text-5xl lg:text-[38px] xl:text-[56px] font-bold leading-tight mb-5 xl:whitespace-nowrap"
               style={{
@@ -178,7 +245,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* ── Right: form card — dark glass, bleeds to right edge ── */}
+          {/* ── Right: form card ── */}
           <div
             className="rounded-2xl p-6 sm:p-8 lg:-mr-[80px] xl:-mr-[140px]"
             style={{
@@ -220,7 +287,7 @@ export default function Contact() {
                   <label className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.70)' }}>Full Name</label>
                   <input
                     type="text" name="name" value={form.name} onChange={handleChange}
-                    placeholder="Enter full name"
+                    placeholder="Enter full name" maxLength={200}
                     style={inputStyle('name')}
                     onFocus={(e) => (e.target.style.borderColor = 'rgba(124,58,237,0.65)')}
                     onBlur={(e) => (e.target.style.borderColor = fieldBorder('name'))}
@@ -232,7 +299,7 @@ export default function Contact() {
                   <label className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.70)' }}>Email Address</label>
                   <input
                     type="email" name="email" value={form.email} onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder="Enter email address" maxLength={254}
                     style={inputStyle('email')}
                     onFocus={(e) => (e.target.style.borderColor = 'rgba(124,58,237,0.65)')}
                     onBlur={(e) => (e.target.style.borderColor = fieldBorder('email'))}
@@ -244,7 +311,7 @@ export default function Contact() {
                   <label className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.70)' }}>Message</label>
                   <textarea
                     name="message" value={form.message} onChange={handleChange}
-                    placeholder="Enter message here" rows={5}
+                    placeholder="Enter message here" rows={5} maxLength={5000}
                     style={textareaStyle('message')}
                     onFocus={(e) => (e.target.style.borderColor = 'rgba(124,58,237,0.65)')}
                     onBlur={(e) => (e.target.style.borderColor = fieldBorder('message'))}
@@ -252,9 +319,17 @@ export default function Contact() {
                   {errors.message && <span className="text-xs text-red-400">{errors.message}</span>}
                 </div>
 
+                {/* Turnstile widget — rendered explicitly via window.turnstile.render() */}
+                <div>
+                  <div ref={turnstileRef} />
+                  {errors.captcha && (
+                    <span className="text-xs text-red-400 mt-1 block">{errors.captcha}</span>
+                  )}
+                </div>
+
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={!token || submitting}
                   className="w-full h-12 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 active:scale-[0.98] mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ backgroundColor: '#FFFFFF', color: '#09090E' }}
                 >
