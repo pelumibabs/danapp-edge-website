@@ -10,9 +10,12 @@ const NAV_LINKS = [
 ]
 
 const OFFICES = [
-  { flag: '🇺🇸', country: 'United States' },
-  { flag: '🇳🇬', country: 'Nigeria'        },
-  { flag: '🇿🇦', country: 'South Africa'  },
+  { flag: '🇳🇬', country: 'Nigeria',        subtitle: 'Headquarters'                },
+  { flag: '🇿🇦', country: 'South Africa',   subtitle: 'Regional HQ Southern Africa' },
+  { flag: '🇰🇪', country: 'Kenya',          subtitle: 'Regional HQ East Africa'     },
+  { flag: '🇲🇺', country: 'Mauritius',      subtitle: 'Hold Co.'                    },
+  { flag: '🇿🇼', country: 'Zimbabwe',       subtitle: 'Regional Office'             },
+  { flag: '🇺🇸', country: 'United States',  subtitle: 'Global Operations Hub'       },
 ]
 
 function SocialIcon({ href, children }: { href: string; children: React.ReactNode }) {
@@ -125,12 +128,15 @@ export default function Footer() {
 
           {/* Offices */}
           <div>
-            <h4 className="text-sm font-bold mb-4" style={{ color: '#FFFFFF' }}>Our Offices</h4>
+            <h4 className="text-sm font-bold mb-4" style={{ color: '#FFFFFF' }}>Where we operate</h4>
             <ul className="space-y-3">
               {OFFICES.map((o) => (
-                <li key={o.country} className="flex items-center gap-2.5">
-                  <span className="text-lg leading-none">{o.flag}</span>
-                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.38)' }}>{o.country}</span>
+                <li key={o.country} className="flex items-start gap-2.5">
+                  <span className="text-base leading-none mt-0.5 shrink-0">{o.flag}</span>
+                  <div>
+                    <p className="text-sm leading-tight" style={{ color: 'rgba(255,255,255,0.70)' }}>{o.country}</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.30)' }}>{o.subtitle}</p>
+                  </div>
                 </li>
               ))}
             </ul>
