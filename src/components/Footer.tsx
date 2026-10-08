@@ -55,7 +55,7 @@ export default function Footer() {
               </div>
               <span className="font-bold text-lg" style={{ color: '#FFFFFF' }}>Danapp Edge</span>
             </div>
-            <p className="text-sm leading-relaxed mb-5 max-w-[240px]" style={{ color: 'rgba(255,255,255,0.38)' }}>
+            <p className="text-sm leading-relaxed mb-5 max-w-[240px]" style={{ color: 'rgba(255,255,255,0.70)' }}>
               Award-winning digital agency driving innovation through technology.
             </p>
             <div className="flex gap-2">
@@ -86,9 +86,9 @@ export default function Footer() {
                   <a
                     href={item.href}
                     className="text-sm transition-colors duration-200"
-                    style={{ color: 'rgba(255,255,255,0.38)' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.38)')}
+                    style={{ color: 'rgba(255,255,255,0.70)' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
                   >
                     {item.label}
                   </a>
@@ -105,9 +105,9 @@ export default function Footer() {
                 <a
                   href="mailto:info@danappedge.com"
                   className="text-sm transition-colors duration-200"
-                  style={{ color: 'rgba(255,255,255,0.38)' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.38)')}
+                  style={{ color: 'rgba(255,255,255,0.70)' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
                 >
                   info@danappedge.com
                 </a>
@@ -116,9 +116,9 @@ export default function Footer() {
                 <a
                   href="mailto:info@danappedge.com"
                   className="text-sm transition-colors duration-200"
-                  style={{ color: 'rgba(255,255,255,0.38)' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.38)')}
+                  style={{ color: 'rgba(255,255,255,0.70)' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
                 >
                   Contact us
                 </a>
